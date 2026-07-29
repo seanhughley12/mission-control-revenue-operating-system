@@ -1,6 +1,6 @@
 # MCROS Lite - Full Starter Kit (for Scout)
 
-One pod, three role-skills, generic governance. Everything you need to stand up your first Mission Control account pod inside Microsoft Scout, in draft-only mode.
+Pods, governance, and the Forecast Hygiene operations skill. Everything you need to stand up your first Mission Control workflows inside Microsoft Scout, draft-only.
 
 ---
 
@@ -355,6 +355,136 @@ Every recommendation carries: **evidence, confidence, owner, next action, gate.*
 ## The promotion test
 
 Promote a signal only if it can finish: "This matters because it could change **[decision]** for **[this account]** by **[specific implication]**." Otherwise it is context, not signal.
+
+
+---
+
+---
+name: forecast-hygiene
+description: Draft executive-grade forecast comments (Confidence, Last Action, Next Action, Risk) for your open opportunities, grounded in your own M365 signals. Draft-only by default; with MSX-MCP it can write approved comments straight to Dynamics via Dataverse. Invoke as /forecast-hygiene.
+---
+
+# Forecast Hygiene (operations skill)
+
+Turn your calendar, email, and Teams signal into clean, executive-grade forecast comments for every open deal. Runs **draft-only** by default: it drafts, you review, you paste. With MSX-MCP connected, it can write the approved comment straight into Dynamics through Dataverse.
+
+This is an **operations skill** — it delivers value on day one and needs no pod, no collectors, and no stored data. It reads live signal each run.
+
+## What it produces (the exact format)
+
+For each opportunity:
+
+```
+Confidence: {Green | Yellow | Red}
+
+Last Action: {1-3 sentences. Most recent customer interaction. Specific people, dates, decisions.}
+
+Next Action: {1-2 sentences. The next concrete commitment, with a date. Lead with the verb.}
+
+Risk: {1-2 sentences. The single most material blocker, what it threatens, and what clears it.}
+```
+
+No preamble, no sign-off, no date prefix. Just the four lines.
+
+## Confidence rubric (BANT + momentum)
+
+- **Green** — BANT fully qualified (Budget, Authority, Need, Timeline), forward motion in the last 14 days, no slipping dates.
+- **Yellow** — BANT partial OR momentum stalled (last decision more than 14 days ago, dates moving, single-threaded, exec attention waning).
+- **Red** — BANT broken (budget pulled, authority disengaged, need redefined, timeline slipped past quarter) OR an active competitive or internal threat to close.
+
+## Tone rules
+
+- Executive-grade and direct. Lead with verbs in Last Action and Next Action.
+- Cite a specific person and a specific date in Last Action wherever the signal supports it.
+- No hedging ("seems," "potentially," "we hope to"). No sales-speak ("partnering," "journey," "exciting").
+- If signal is thin, write `Signal sparse - last touchpoint {date}` rather than inventing context.
+
+## How it runs (level-aware)
+
+Do the most your setup allows. The setup guide (`forecast-hygiene-setup.md`) explains what each level needs.
+
+- **Level 0 — Scout + M365.** You name the accounts. It reads your calendar, email, and Teams for each and drafts the four-line comment. You paste into CRM.
+- **Level 1 — plus MSX-MCP.** It pulls your actual open opportunities from Dynamics automatically, researches each, drafts, and after you approve it writes the comment straight into the Forecast Comments field through Dataverse. No web form, no browser automation.
+- **Level 2 — plus a scheduled job.** The whole run fires unattended twice a week from a Windows Task; you just get the approval prompt and reply.
+
+## The run, step by step
+
+1. **Get the deal list.** Level 0: you name the accounts. Level 1+: it pulls your open opps (name, account, close date, value, stage, and the Dataverse record ID).
+2. **Research each deal.** For each opp, summarize the last ~10 days from your Teams, transcripts, and email into Last Action, Next Action, and Risk. Cite people and dates.
+3. **Draft the comment** in the exact four-line format; score Confidence with the rubric.
+4. **Show you all drafts for approval** (Teams self-message or in chat). You reply "approve all," "approve 1,3," or give per-opp edits.
+5. **Deliver.** Level 0: hand you the approved text to paste. Level 1+: PATCH the approved comment to the Forecast Comments field via Dataverse, then confirm which succeeded.
+
+## How the write works (Level 1+)
+
+- The write is a **Dataverse REST PATCH** to the opportunity's Forecast Comments field, using MSX-MCP's `dataverse_write` (which carries a preview and confirm). No CRM web form, no Playwright.
+- Send the **new comment block only**. The Forecast Comments plugin appends history server-side; do not resend the whole thread.
+- Needs `az login` and network reach to Dynamics (corporate network / Conditional Access). If the network blocks it, it falls back to draft-and-paste and nothing is lost.
+
+## Hard rules
+
+- Never fabricate signal. Thin signal means you say so.
+- Never write to CRM without explicit approval ("approve all" or per-opp). Auto-write is off; CRM write is a hard gate.
+- Write **only** the Forecast Comments field. Never touch Customer Need / Description or any other field.
+- No decks, no sign-off line, no date prefix (the CRM thread timestamps each entry).
+- Re-pull the opp list every run; do not cache it.
+
+
+---
+
+# Forecast Hygiene — Setup & Levels Map
+
+You don't need everything to get value. Find where you are on the map and do just that step. The payoff at Level 0 is already real: clean, executive-grade forecast comments you can paste today.
+
+Each level *adds* automation on top of the one below it. Start where you are.
+
+---
+
+## Level 0 — Draft from your signals
+**Everyone with Scout is already here.**
+
+- **You're here if:** Scout is installed and Microsoft 365 is signed in.
+- **You get:** Executive-grade forecast comments (Confidence, Last Action, Next Action, Risk) drafted from your calendar, email, and Teams, for any account you name. You copy them into CRM.
+- **To set up:** Nothing. Install the `forecast-hygiene` skill and say: *"Draft forecast comments for {Account A} and {Account B}."*
+- **Check you're ready:** Ask Scout to read your last week of email. If it can, you're set.
+
+## Level 1 — Pull pipeline and write to CRM
+**Add MSX-MCP.**
+
+- **You're here if:** The MSX-MCP server is connected in Scout and you can `az login` to the Microsoft tenant.
+- **You get:** It pulls your actual open opportunities from Dynamics, drafts a comment per deal, and after you approve it writes the comment straight into the Forecast Comments field through Dataverse. No naming accounts by hand, no web form, no browser automation.
+- **To set up:**
+  1. Add the MSX-MCP server in Scout (server name `MSX-MCP`, the Dataverse MCP URL).
+  2. Run `az login` once so it has a token for `microsoftsales.crm.dynamics.com`.
+  3. Confirm: ask Scout to "list my open opportunities from MSX." If they come back, you're set.
+- **Still approval-gated.** It drafts and shows you; nothing writes until you say "approve."
+- **Network note:** the write needs corporate-network / VPN reach to Dynamics (Conditional Access). Off-network, it falls back to draft-and-paste and nothing is lost.
+
+## Level 2 — Run it unattended
+**Add a scheduled job.**
+
+- **You're here if:** You want it to fire on a cadence without you starting it.
+- **You get:** The whole run (pull, research, draft) fires twice a week from a Windows Task. You just get the approval prompt in Teams and reply.
+- **To set up:**
+  1. Get Level 1 working by hand first.
+  2. Create a scheduled task (or a Scout automation) that runs the skill on your cadence, for example Monday and Thursday mornings.
+  3. Keep the approval step: it should still ping you and wait before any write.
+
+---
+
+## Which level should I start at?
+
+| If you have... | Start at | Time to first value |
+|----------------|----------|---------------------|
+| Scout + M365 only | **Level 0** | ~5 minutes |
+| ...and MSX-MCP + az login | **Level 1** | ~15 minutes |
+| ...and want it hands-off | **Level 2** | ~20 minutes (one-time) |
+
+Most people should start at **Level 0**, get comfortable with the drafts for a week, then climb. You get the same quality of comment at every level; the higher levels just remove more manual steps.
+
+## The one rule at every level
+
+Draft-only until you approve. Nothing writes to CRM, and nothing goes to a customer, without your explicit go-ahead. The write touches only the Forecast Comments field, nothing else.
 
 
 ---

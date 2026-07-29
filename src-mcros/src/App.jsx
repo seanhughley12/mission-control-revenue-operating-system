@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   SNAPSHOT_DATE, receipts, patterns, loop, architecture, pods, podRoles,
   funnel, rungs, gates, cadence, e7Specialists, e7Levers, learnLoop, adoptPath, kitFiles,
-  impactHeadline, impactStories,
+  impactHeadline, impactStories, forecastLevels, forecastFiles,
 } from "./data.js";
 
 const BASE = import.meta.env.BASE_URL;
@@ -210,7 +210,7 @@ function App() {
   const [activeDot, setActiveDot] = useState(0);
   const [toast, showToast] = useToast();
 
-  const sections = ["hero", "idea", "wedge", "loop", "arch", "org", "pod", "gate", "ladder", "guardrails", "cadence", "impact", "receipts", "e7", "learn", "kit", "punch"];
+  const sections = ["hero", "idea", "wedge", "loop", "arch", "org", "pod", "gate", "ladder", "guardrails", "cadence", "impact", "receipts", "e7", "learn", "kit", "forecast", "punch"];
 
   useEffect(() => {
     const onScroll = () => {
@@ -634,9 +634,66 @@ function App() {
                   <div className="arrow">↓</div>
                 </button>
               </div>
-              <div className="ops-teaser">
-                <div className="ot-tag">Next drop</div>
-                <div className="ot-body"><b>Operations skills.</b> Forecast hygiene, transcript-to-narrative, and customer artifacts. The most valuable, most plug-and-play wins, and where most of the influenced revenue actually came from.</div>
+              <div className="ops-teaser" onClick={() => go("forecast")} style={{ cursor: "pointer" }}>
+                <div className="ot-tag">Now live</div>
+                <div className="ot-body"><b>Forecast Hygiene is ready below.</b> The most valuable, most plug-and-play win, and where a lot of the influenced revenue came from. See the levels map and download it. &darr;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FORECAST HYGIENE — operations skill + levels map */}
+      <section className="section-dark" id="forecast">
+        <div className="wrap">
+          <div className="reveal kicker">Operations skill · #1</div>
+          <h2 className="big reveal">Start with the one that pays for itself: forecast hygiene.</h2>
+          <p className="lead reveal">Clean, executive-grade forecast comments for every open deal, drafted from your own signals. No pod, no collectors, no stored data. It reads live M365 each run. You don't need everything to get value, so find where you are on the map and do just that step.</p>
+
+          <div className="fmap">
+            {forecastLevels.map((l, i) => (
+              <div key={l.n} className={`flevel c-${l.tone} reveal d${i + 1}`}>
+                <div className="fl-head">
+                  <div className="fl-num">L{l.n}</div>
+                  <div>
+                    <div className="fl-name">{l.name}</div>
+                    <div className="fl-tag">{l.tag} · {l.time}</div>
+                  </div>
+                </div>
+                <div className="fl-row"><span className="fl-lbl">You're here if</span>{l.have}</div>
+                <div className="fl-row"><span className="fl-lbl">You get</span>{l.get}</div>
+                <div className="fl-row"><span className="fl-lbl">To set up</span>{l.setup}</div>
+                {i < forecastLevels.length - 1 && <div className="fl-plus">+</div>}
+              </div>
+            ))}
+          </div>
+
+          <div className="fbottom">
+            <div className="fsample reveal d1">
+              <div className="fs-lbl">WHAT EVERY LEVEL PRODUCES</div>
+              <pre className="fs-code">{`Confidence: Green
+
+Last Action: Met with J. Rivera (CTO) on Jul 24; she
+confirmed budget and named Q3 as the deadline.
+
+Next Action: Send the security review packet by Aug 1
+ahead of the exec readout.
+
+Risk: Single-threaded on Rivera. Widen to the platform
+lead before close or the timeline slips.`}</pre>
+              <div className="fs-note">Same four-line format at every level. The higher levels just remove manual steps.</div>
+            </div>
+            <div className="fdl reveal d2">
+              <div className="dlg-head c-signal">Download the skill</div>
+              {forecastFiles.map((f) => (
+                <button key={f.file} className={`dl c-${f.tone}`} onClick={() => download(f.file, f.title)}>
+                  <div className="ic">MD</div>
+                  <div className="dt"><b>{f.title}</b><span>{f.desc}</span></div>
+                  <div className="arrow">↓</div>
+                </button>
+              ))}
+              <div className="fstart">
+                <b>Fastest start:</b> install the skill, then say <span className="mono">"Draft forecast comments for [Account A] and [Account B]."</span> That's Level 0. Climb when you're ready.
               </div>
             </div>
           </div>

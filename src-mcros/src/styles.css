@@ -450,6 +450,32 @@ h2.big {
 @media (max-width: 900px) { .kit-wrap { grid-template-columns: 1fr; } }
 
 /* ============================================================
+   FORECAST HYGIENE (levels map)
+   ============================================================ */
+.fmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
+.flevel { position: relative; border-radius: 16px; padding: 24px; background: var(--panel); border: 1px solid var(--c); transition: transform 0.4s var(--ease), box-shadow 0.4s; }
+.flevel:hover { transform: translateY(-6px); box-shadow: 0 30px 66px -42px var(--c); }
+.flevel .fl-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.flevel .fl-num { width: 46px; height: 46px; flex: none; border-radius: 12px; border: 2px solid var(--c); color: var(--c); background: var(--bg); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 20px; font-weight: 700; }
+.flevel .fl-name { font-family: var(--display); font-size: 17px; font-weight: 600; color: var(--tx); }
+.flevel .fl-tag { font-family: var(--mono); font-size: 10.5px; color: var(--c); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+.flevel .fl-row { font-size: 12.5px; color: var(--tx2); padding: 10px 0; border-top: 1px solid var(--hair); }
+.flevel .fl-lbl { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--mut); margin-bottom: 4px; }
+.flevel .fl-plus { position: absolute; right: -18px; top: 50%; transform: translateY(-50%); z-index: 2; width: 26px; height: 26px; border-radius: 50%; background: var(--bg2); border: 1px solid var(--hair2); color: var(--mut); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+@media (max-width: 860px) { .fmap { grid-template-columns: 1fr; } .flevel .fl-plus { right: 50%; top: auto; bottom: -18px; transform: translateX(50%); } }
+
+.fbottom { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: stretch; }
+.fsample { border-radius: 16px; background: var(--bg2); border: 1px solid var(--hair); padding: 24px; }
+.fsample .fs-lbl { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; color: var(--signal); margin-bottom: 14px; }
+.fsample .fs-code { font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--tx2); white-space: pre-wrap; background: var(--bg); border-radius: 10px; border: 1px solid var(--hair); padding: 16px 18px; }
+.fsample .fs-note { font-size: 12px; color: var(--mut); font-style: italic; margin-top: 14px; }
+.fdl { display: flex; flex-direction: column; }
+.fstart { margin-top: 16px; border-radius: 12px; background: var(--panel2); border: 1px solid var(--hair); border-left: 4px solid var(--signal); padding: 16px 18px; font-size: 13px; color: var(--tx2); }
+.fstart b { color: var(--signal); }
+.fstart .mono { font-family: var(--mono); font-size: 12px; color: var(--tx); }
+@media (max-width: 860px) { .fbottom { grid-template-columns: 1fr; } }
+
+/* ============================================================
    PUNCHLINE / FOOTER
    ============================================================ */
 .punch { text-align: left; }

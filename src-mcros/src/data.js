@@ -190,9 +190,48 @@ export const learnLoop = [
 
 // The honest adoption path, tied to the story
 export const adoptPath = [
-  { n: "1", name: "Run one skill by hand", tone: "signal", body: "Install a role skill and invoke it on one account when you need it. It reads live M365, so it works on day one with no plumbing." },
-  { n: "2", name: "Wire it into a pod", tone: "action", body: "Turn the skills into a scheduled, draft-only automation. This is where the collectors and stored signal start to compound." },
-  { n: "3", name: "Add the operations skills", tone: "l3", body: "Forecast hygiene, transcript-to-narrative, customer artifacts. The highest-value plug-and-play wins. This is the next drop." },
+  { n: "1", name: "Run one skill by hand", tone: "signal", body: "Install a skill and invoke it when you need it. It reads live M365, so it works on day one with no plumbing. Forecast hygiene is the best place to start." },
+  { n: "2", name: "Wire it into a pod", tone: "action", body: "Turn the pod role-skills into a scheduled, draft-only automation. This is where the collectors and stored signal start to compound." },
+  { n: "3", name: "Add more operations skills", tone: "l3", body: "Transcript-to-narrative and customer artifacts next. The highest-value plug-and-play wins, and where most of the influence came from." },
+];
+
+// Forecast Hygiene operations skill — the levels map
+export const forecastLevels = [
+  {
+    n: "0",
+    name: "Draft from your signals",
+    tone: "signal",
+    have: "Scout + Microsoft 365 signed in",
+    get: "Executive-grade comments (Confidence, Last / Next / Risk) drafted from your calendar, email, and Teams for any account you name. You paste into CRM.",
+    setup: "Nothing. Install the skill and go.",
+    time: "~5 min",
+    tag: "Everyone with Scout is here",
+  },
+  {
+    n: "1",
+    name: "Pull pipeline + write to CRM",
+    tone: "action",
+    have: "+ MSX-MCP connected, az login",
+    get: "It pulls your actual open opportunities from Dynamics, drafts a comment per deal, and after you approve, writes it straight into the Forecast Comments field via Dataverse. No web form.",
+    setup: "Add the MSX-MCP server, run az login once.",
+    time: "~15 min",
+    tag: "Still approval-gated",
+  },
+  {
+    n: "2",
+    name: "Run it unattended",
+    tone: "l3",
+    have: "+ a scheduled job",
+    get: "The full run fires twice a week from a Windows Task or Scout automation. You just get the approval prompt in Teams and reply.",
+    setup: "Get Level 1 working, then schedule it. Keep the approval step.",
+    time: "~20 min once",
+    tag: "Hands-off after approval",
+  },
+];
+
+export const forecastFiles = [
+  { file: "forecast-hygiene.md", title: "Forecast Hygiene skill", desc: "Installable Scout skill. Draft-first, level-aware.", tone: "signal" },
+  { file: "forecast-hygiene-setup.md", title: "Setup & Levels Map", desc: "What you need at each level and how to check.", tone: "action" },
 ];
 
 // Downloadable starter-kit files (served from /kit/)
