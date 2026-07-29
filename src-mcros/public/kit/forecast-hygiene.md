@@ -67,3 +67,4 @@ Do the most your setup allows. The setup guide (`forecast-hygiene-setup.md`) exp
 - Write **only** the Forecast Comments field. Never touch Customer Need / Description or any other field.
 - No decks, no sign-off line, no date prefix (the CRM thread timestamps each entry).
 - Re-pull the opp list every run; do not cache it.
+
