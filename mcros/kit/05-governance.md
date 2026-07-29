@@ -1,28 +1,27 @@
-# Governance & Gates
+# Governance & Gates (in Scout)
 
-> The whole system is safe because of one idea: **read agents inspect; write agents ask.** A read agent becoming a write agent is an architectural promotion, not a casual change.
+> The whole system is safe because of one idea: **read work runs free; write work asks.** In Scout, "asks" means **draft-only** — Scout prepares it, you press send.
 
-## The three gates
+## The three gates, mapped to Scout
 
 ### Auto — execute and log
-Low-stakes, reversible, read-only. Runs without asking, but always logs.
-- Read-only source ingestion and signal scoring
-- Internal board / action cards
-- Public signal ingest (treated as untrusted until verified)
+Low-stakes, reversible, read-only. Runs without asking.
+- Reading signals via the Scout M365 tools (email, calendar, Teams, files)
+- Scoring / classifying signals
+- Writing to Scout **memory** (`m_remember`) and internal notes / Teams cards
 
-### Soft gate — approval card, timeout cancels
-Medium-stakes or a first-time pattern. Shows a card; if you don't approve, it cancels.
-- Low-risk internal informational replies
-- First-time patterns before they are trusted
-- Medium-stakes, reversible actions
+### Soft — draft first, you approve
+Medium-stakes or a first-time pattern.
+- Low-risk internal informational replies (draft, then you send)
+- Anything the pod has not done before
 
-### Hard gate — blocks until you approve
-Customer-facing, financial, or system-changing. **Blocks. Nothing customer-facing ever auto-sends.**
-- Any CRM / MSX write: stage, forecast, value, milestone
-- Any customer-facing email, Teams message, recap, deck, or proposal
-- Any calendar create, update, or decline
+### Hard — Scout drafts and stops
+Customer-facing, financial, or system-changing. **Nothing customer-facing ever auto-sends.**
+- Any customer-facing email, Teams message, recap, deck, or proposal → save to **Drafts** (`workiq_create_draft`, or reply with `saveAsDraft`)
+- Any CRM / MSX write: stage, forecast, value, milestone → propose only
+- Any calendar create, update, or decline → propose only
 - Any internal escalation that names a person
-- Anything involving confidential deal or financial content
+- Anything with confidential deal or financial content
 
 ## Progressive autonomy (rungs)
 
@@ -30,24 +29,25 @@ A pod climbs only when the prior rung is boringly reliable:
 
 1. **Watch** — observe only; surface, never draft outbound.
 2. **Medium assist** — draft moves and artifacts; everything outbound waits for you.
-3. **High assist** — proactively prepare moves and recaps; still gated on send.
+3. **High assist** — proactively prepare the next move and recap; still gated on send.
 4. **High autonomy** — self-directed toward a dollar goal; **send is still gated.**
 
 > Progressive trust, not fast trust. This applies to coordinators too, not just doers.
 
+## Scout-specific guardrails
+
+- **One automation at a time.** Scout runs automations serially. While testing, keep the pod as your only new automation so schedules do not collide. If you add more pods later, stagger their times.
+- **Draft, do not send.** Point every outbound step at Drafts. Review in Outlook / Teams before it goes.
+- **Teams notifications, not Teams sends.** The pod's Teams card is a nudge to you. It is not a message to a customer.
+- **Pause anytime.** Disable the automation to pause; delete it to stop. Your skills and memory stay.
+- **Sensitivity labels carry through.** Confidential content stays in Scout; do not let the pod write it to an unprotected destination.
+
 ## Accountability rules
 
-Every meaningful agent run produces at least one of: a structured signal, a recommendation, an artifact, an action, an approval request, an audit event, or a memory update. Never vibes.
+Every meaningful run produces at least one of: a structured signal, a recommendation, a draft artifact, an action, an approval request, an audit note, or a memory update. Never vibes.
 
-Every recommendation carries: **evidence, confidence, owner, next action, approval status, source data, outcome tracking.**
+Every recommendation carries: **evidence, confidence, owner, next action, gate.**
 
-## Event log doctrine
+## The promotion test
 
-Logs are a product surface, not plumbing. Every action writes an event so you can always ask:
-- Why did the system recommend this?
-- What changed? What evidence was used?
-- Who approved it? Did the action improve the deal?
-
-## Privacy boundary
-
-Pods are private and local by default. Sensitivity labels carry through: confidential content never leaves for an unprotected destination. Memory is scoped — each agent sees only what it needs, and memory writes are reviewed before they stick.
+Promote a signal only if it can finish: "This matters because it could change **[decision]** for **[this account]** by **[specific implication]**." Otherwise it is context, not signal.

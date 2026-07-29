@@ -197,11 +197,11 @@ export const asks = [
 
 // Downloadable starter-kit files (served from /kit/)
 export const kitFiles = [
-  { file: "00-START-HERE.md", title: "Start Here", desc: "The 10-minute setup: stand up your first pod in draft mode.", tone: "signal" },
-  { file: "01-master-prompt.md", title: "Master Prompt", desc: "Paste into your agent runtime to bootstrap a 3-role pod.", tone: "action" },
-  { file: "02-account-watcher.md", title: "Account Watcher", desc: "Role definition: the pod's chief of staff.", tone: "action" },
-  { file: "03-opportunity-chair.md", title: "Opportunity Chair", desc: "Role definition: turns signals into next-best moves.", tone: "l3" },
-  { file: "04-action-owner.md", title: "Action Owner", desc: "Role definition: by-who / by-when accountability.", tone: "l3" },
-  { file: "05-governance.md", title: "Governance & Gates", desc: "The approval doctrine: hard, soft, and auto gates.", tone: "violet" },
+  { file: "00-START-HERE.md", title: "Start Here", desc: "Prerequisites and the 10-minute Scout setup, two install paths.", tone: "signal" },
+  { file: "01-master-prompt.md", title: "Master Prompt", desc: "Paste into Scout; it builds the pod (skills + automation) for you.", tone: "action" },
+  { file: "02-account-watcher.md", title: "Account Watcher skill", desc: "Installable Scout skill: the pod's chief of staff.", tone: "action" },
+  { file: "03-opportunity-chair.md", title: "Opportunity Chair skill", desc: "Installable Scout skill: turns signals into next-best moves.", tone: "l3" },
+  { file: "04-action-owner.md", title: "Action Owner skill", desc: "Installable Scout skill: by-who / by-when accountability.", tone: "l3" },
+  { file: "05-governance.md", title: "Governance & Gates", desc: "Draft-only doctrine mapped to Scout's approval model.", tone: "violet" },
 ];
 

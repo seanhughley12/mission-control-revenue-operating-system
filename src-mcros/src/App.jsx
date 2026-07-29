@@ -591,16 +591,16 @@ function App() {
         <div className="wrap">
           <div className="reveal kicker k-signal">Translate this</div>
           <h2 className="big reveal">You don't need 107 agents. You need one pod.</h2>
-          <p className="lead reveal">Mission Control is built to be adopted: pods are portable, agents are role definitions, and the governance is generic. Download the kit and stand up your first pod tonight.</p>
+          <p className="lead reveal">Mission Control is built to be adopted: pods are portable, roles are just skills, and the governance is generic. If you already run Microsoft Scout, download the kit and let Scout build your first pod for you.</p>
           <div className="kit-wrap">
             <div className="kit-left reveal d1">
-              <h3>MCROS Lite: your first pod</h3>
-              <p>Pick one strategic account. Stand up three roles first, in draft-only mode. Add the rest as each rung proves boringly reliable.</p>
+              <h3>MCROS Lite: your first pod, in Scout</h3>
+              <p>Built for Microsoft Scout users. Paste one master prompt and Scout creates the three role-skills, wires a draft-only daily automation, and stores your account context. You approve everything.</p>
               <div className="steps">
-                {[["1", "Download the kit", "Grab the master prompt and the three role files below."],
-                  ["2", "Paste the master prompt", "Bootstrap the pod in your agent runtime, draft mode only."],
-                  ["3", "Point it at one account", "Watcher reads signals, Chair proposes moves, Owner tracks closure."],
-                  ["4", "Run in draft for a week", "Then graduate a rung once it's boringly reliable."]].map((s) => (
+                {[["1", "Download the kit", "Grab the master prompt, three role skills, and the governance file below."],
+                  ["2", "Paste the master prompt into Scout", "Scout interviews you, then builds the skills and one daily automation, draft-only."],
+                  ["3", "Point it at one account", "Watcher reads signals, Chair proposes moves, Owner tracks closure to a Teams card."],
+                  ["4", "Run in draft for a week", "Correct it out loud. Graduate a rung once it's boringly reliable."]].map((s) => (
                   <div key={s[0]} className="kstep">
                     <div className="kn">{s[0]}</div>
                     <div><b>{s[1]}</b><br /><span>{s[2]}</span></div>
