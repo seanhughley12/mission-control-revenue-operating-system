@@ -230,7 +230,7 @@ export const forecastLevels = [
 ];
 
 export const forecastFiles = [
-  { file: "forecast-hygiene-skill.md", title: "Forecast Hygiene skill", desc: "Installable Scout skill. Draft-first, level-aware.", tone: "signal" },
+  { file: "forecast-skill.md", title: "Forecast Hygiene skill", desc: "Installable Scout skill. Draft-first, level-aware.", tone: "signal" },
   { file: "forecast-hygiene-setup.md", title: "Setup & Levels Map", desc: "What you need at each level and how to check.", tone: "action" },
 ];
 
