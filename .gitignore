@@ -1,0 +1,10 @@
+# dependencies
+**/node_modules/
+
+# vite cache
+src-mcros/.vite/
+src-e7/.vite/
+
+# os
+.DS_Store
+Thumbs.db

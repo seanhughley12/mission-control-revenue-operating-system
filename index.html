@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mission Control · Revenue Operating System</title>
+<link rel="icon" type="image/svg+xml" href="./mcros/favicon.svg" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--sig:#3dd7c4;--act:#f5a623;--l3:#e85c8a;--vio:#8b7be8;--mut:#7b7ea8}
+  body{font-family:'Inter',system-ui,sans-serif;background:#07081a;color:#ecebf7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;position:relative;padding:24px}
+  .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(80% 60% at 78% 20%,rgba(232,92,138,.12),transparent 55%),radial-gradient(70% 60% at 12% 82%,rgba(61,215,196,.10),transparent 60%)}
+  .wrap{position:relative;z-index:1;max-width:860px;text-align:center}
+  .kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;color:var(--sig);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,6vw,62px);line-height:1.03;letter-spacing:-.03em;margin-bottom:18px}
+  h1 .g{background:linear-gradient(100deg,var(--l3),var(--vio),var(--sig));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  p.sub{color:#b8bad8;font-size:clamp(15px,1.8vw,19px);font-style:italic;margin-bottom:48px;max-width:60ch;margin-left:auto;margin-right:auto}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:680px){.cards{grid-template-columns:1fr}}
+  .card{display:block;text-align:left;border-radius:18px;padding:30px;background:#111335;border:1px solid #2a2e63;transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+  .card:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 30px 70px -44px var(--c)}
+  .card .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--c);text-transform:uppercase;margin-bottom:12px}
+  .card h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;margin-bottom:8px}
+  .card p{color:var(--mut);font-size:14px;margin-bottom:16px}
+  .card .go{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--c);display:inline-flex;align-items:center;gap:8px}
+  .live{--c:var(--sig)}
+  .soon{--c:var(--act);opacity:.72}
+  .soon .go{color:var(--mut)}
+  footer{position:relative;z-index:1;margin-top:52px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a5d86}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="kick">Mission Control</div>
+    <h1>A <span class="g">revenue operating system.</span></h1>
+    <p class="sub">Not a crew of assistants. A control plane running autonomous account pods under hard gates. Level 3, agent-led work.</p>
+    <div class="cards">
+      <a class="card live" href="./mcros/">
+        <div class="tag">Live · the playbook</div>
+        <h2>MCROS Lite</h2>
+        <p>The story, the system, and a downloadable starter kit to stand up your first pod tonight.</p>
+        <span class="go">Enter &darr;</span>
+      </a>
+      <a class="card soon" href="./e7/">
+        <div class="tag">Coming soon</div>
+        <h2>E7 / Cost Hub</h2>
+        <p>The platform and governance story for enterprise agentic AI, with the economics engine behind it.</p>
+        <span class="go">In build</span>
+      </a>
+    </div>
+  </div>
+  <footer>Sean Hughley · Microsoft</footer>
+</body>
+</html>
