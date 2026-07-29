@@ -27,7 +27,7 @@ export const patterns = [
     title: "Human-led agents",
     tag: "delegation",
     body: "Agents join teams as digital colleagues, working at the direction of people.",
-    note: "Most AI crews live here.",
+    note: "Most teams stop here.",
     tone: "action",
     here: false,
   },
@@ -63,7 +63,7 @@ export const architecture = [
 ];
 
 export const pods = [
-  { name: "MSC Cargo", posture: "hyper focus", rung: 3, mission: "Land E7. Build the story around Cowork, MACC decrement, and an Agent 365 landing." },
+  { name: "MSC Cargo", posture: "hyper focus", rung: 2, mission: "Land E7. Build the story around Cowork, MACC decrement, and an Agent 365 landing." },
   { name: "Harley-Davidson", posture: "platform consolidation", rung: 1, mission: "Land the $4.45M EA renewal and drive the $2.52M E7 step-up." },
   { name: "C.H. Robinson", posture: "empower the builders", rung: 1, mission: "Empower the builders and land E7 with an all-in agentic team strategy." },
   { name: "Autoliv", posture: "frontier E7 land", rung: 1, mission: "Land the FY27 E7 step-up (10,200 seats, 50% IWs) as the frontier-manufacturing proof." },
@@ -93,10 +93,36 @@ export const funnel = [
 ];
 
 export const rungs = [
-  { n: 1, name: "Watch", sub: "Observe only", body: "Monitors signals and health; surfaces, never drafts outbound.", who: "Echo Global", tone: "hair" },
-  { n: 2, name: "Medium assist", sub: "Draft under hard gate", body: "Drafts moves and artifacts; everything outbound waits for me.", who: "Harley · Autoliv · CHR · TQL · Polaris · Smiths", tone: "action" },
-  { n: 3, name: "High assist", sub: "Proactive under hard gate", body: "Proactively prepares E7 moves and recaps; still gated on send.", who: "MSC Cargo", tone: "l3" },
-  { n: 4, name: "High autonomy", sub: "Self-directed under hard gate", body: "Autonomously creates qualified pipeline toward a dollar goal; send still gated.", who: "Sirva: the autonomous proof pod", tone: "signal", hero: true },
+  { n: 1, name: "Watch", sub: "Observe only", body: "Monitors signals and account health; surfaces what matters, never drafts outbound.", who: "Where every new pod starts", tone: "hair" },
+  { n: 2, name: "Medium assist", sub: "Draft under hard gate", body: "Drafts moves and artifacts once it reads the account well; everything outbound waits for you.", who: "Earned after Watch is boringly reliable", tone: "action" },
+  { n: 3, name: "High assist", sub: "Proactive under hard gate", body: "Proactively prepares the next move and the recap before you ask; still gated on send.", who: "Earned after drafts are consistently clean", tone: "l3" },
+  { n: 4, name: "High autonomy", sub: "Self-directed under hard gate", body: "Runs itself toward a dollar goal, creating qualified pipeline on its own; send is still gated.", who: "Earned only after everything below is trusted", tone: "signal", hero: true },
+];
+
+export const impactHeadline = { value: "$3M+", label: "influenced closed-won revenue in Q4 alone" };
+
+export const impactStories = [
+  {
+    tag: "Total Quality Logistics",
+    tone: "signal",
+    metric: "$2.5M",
+    metricLabel: "closed",
+    body: "A large share of the work that moved this deal ran through the pods: the prep, the follow-through, and the follow-ups that kept it alive between conversations.",
+  },
+  {
+    tag: "Sirva · autonomous pod",
+    tone: "l3",
+    metric: "Up, not down",
+    metricLabel: "the signal that matters",
+    body: "Autonomous outreach earned a reply and moved the conversation UP the chain, from a VP to the CISO, instead of getting pushed down. The pod manager monitors and reports on the pipeline goal on its own.",
+  },
+  {
+    tag: "The pattern",
+    tone: "action",
+    metric: "Influence",
+    metricLabel: "not activity",
+    body: "The point was never hours saved. It is revenue moved: deals influenced, conversations escalated, and follow-through that no longer depends on me remembering.",
+  },
 ];
 
 export const gates = [

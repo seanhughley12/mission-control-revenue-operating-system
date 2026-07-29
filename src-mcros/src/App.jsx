@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   SNAPSHOT_DATE, receipts, patterns, loop, architecture, pods, podRoles,
   funnel, rungs, gates, cadence, e7Specialists, e7Missions, learnLoop, asks, kitFiles,
+  impactHeadline, impactStories,
 } from "./data.js";
 
 const BASE = import.meta.env.BASE_URL;
@@ -209,7 +210,7 @@ function App() {
   const [activeDot, setActiveDot] = useState(0);
   const [toast, showToast] = useToast();
 
-  const sections = ["hero", "idea", "wedge", "loop", "arch", "org", "pod", "gate", "ladder", "guardrails", "cadence", "receipts", "e7", "learn", "kit", "punch"];
+  const sections = ["hero", "idea", "wedge", "loop", "arch", "org", "pod", "gate", "ladder", "guardrails", "cadence", "impact", "receipts", "e7", "learn", "kit", "punch"];
 
   useEffect(() => {
     const onScroll = () => {
@@ -260,7 +261,7 @@ function App() {
             MCROS PLAYBOOK
             <span className="live"><span className="blip" /> live control plane</span>
           </div>
-          <h1>I don't run a crew.<br /><span className="grad">I run a revenue operating system.</span></h1>
+          <h1>I don't prompt a chatbot.<br /><span className="grad">I run a revenue operating system.</span></h1>
           <div className="sub">107 agents. 9 account pods. One control plane. Progressive autonomy.</div>
           <div className="wedge-line">
             <span><b>Level 3: agent-led work.</b> The agents run the business process and check in only when a decision needs me.</span>
@@ -273,23 +274,23 @@ function App() {
       <section className="section-dark" id="idea">
         <div className="wrap">
           <div className="reveal kicker">The idea</div>
-          <h2 className="big reveal">AI isn't a crew I run. It's a company I operate.</h2>
+          <h2 className="big reveal">AI isn't a tool I use. It's a system I operate.</h2>
           <div className="compare">
             <div className="col old reveal d1">
-              <div className="tag">A crew of assistants</div>
-              <h3>Agents that push to me.</h3>
+              <div className="tag">The old way</div>
+              <h3>AI as a tool. It answers when asked.</h3>
               <ul>
-                {[["Named helpers on a schedule", "Inbox sweep, morning brief, deck prep"],
-                  ["I'm still the operator", "Every judgment call routes back to me"],
-                  ["One job each", "A helper does a task; it doesn't own an outcome"],
-                  ["Output is mine, when I sit down", "The work waits for me to run it"]].map((r) => (
+                {[["I open a chat and type", "Nothing happens until I start it"],
+                  ["It waits for me", "The work sits until I remember to do it"],
+                  ["One question, one answer", "No memory of the account, no follow-through"],
+                  ["I'm the bottleneck", "Every output depends on me being at the keyboard"]].map((r) => (
                   <li key={r[0]}><span className="marker">▪</span><span><span className="b">{r[0]}</span> <span className="d">· {r[1]}</span></span></li>
                 ))}
               </ul>
             </div>
             <div className="col new reveal d2">
-              <div className="tag">A revenue operating system</div>
-              <h3>Pods that run the account.</h3>
+              <div className="tag">The new way</div>
+              <h3>A revenue operating system. It runs the account.</h3>
               <ul>
                 {[["A staffed control room per account", "Each strategic account gets a persistent agent team"],
                   ["The system operates; I decide", "It senses, interprets, debates, acts, then gates to me"],
@@ -308,7 +309,7 @@ function App() {
         <div className="wrap">
           <div className="reveal kicker">The wedge</div>
           <h2 className="big reveal">Three patterns of work. Most people stop at two.</h2>
-          <p className="lead reveal">Microsoft's own framing for how agents show up. A crew of assistants is Pattern 2. A control plane running pods autonomously, under gates, is Pattern 3.</p>
+          <p className="lead reveal">Microsoft's own framing for how agents show up. Using AI as an assistant is Pattern 2. A control plane running pods autonomously, under gates, is Pattern 3.</p>
           <div className="patterns">
             {patterns.map((p, i) => (
               <div key={p.n} className={`pattern c-${p.tone} ${p.here ? "here" : ""} reveal d${i + 1}`}>
@@ -435,7 +436,7 @@ function App() {
           <p className="lead reveal">Progressive trust, not fast trust. A pod moves up a rung only when the prior rung is boringly reliable, and every rung keeps a hard gate on customer, CRM, and financial actions.</p>
           <div className="ladder">
             {rungs.map((r) => (
-              <div key={r.n} className={`rung c-${r.tone} ${r.hero ? "hero" : ""} reveal`}>
+              <div key={r.n} className={`rung c-${r.tone} ${r.hero ? "toprung" : ""} reveal`}>
                 <div className="rl">{r.n}</div>
                 <div className="rmid">
                   <div className="rname">{r.name} <span className="rsub">· {r.sub}</span></div>
@@ -497,11 +498,34 @@ function App() {
         </div>
       </section>
 
-      {/* RECEIPTS */}
-      <section className="section-dark" id="receipts">
+      {/* IMPACT */}
+      <section className="section-dark" id="impact">
         <div className="wrap">
-          <div className="reveal kicker k-signal">The receipts</div>
-          <h2 className="big reveal">Not hours saved. A system that actually ran.</h2>
+          <div className="reveal kicker k-signal">The business impact</div>
+          <h2 className="big reveal">Not hours saved. Influenced revenue.</h2>
+          <p className="lead reveal">The point was never time saved. It is revenue moved. In Q4 alone, work run through Mission Control influenced more than $3M in closed-won revenue.</p>
+          <div className="impact-hero reveal d1">
+            <div className="ih-num">{impactHeadline.value}</div>
+            <div className="ih-label">{impactHeadline.label}</div>
+          </div>
+          <div className="impact-grid">
+            {impactStories.map((s, i) => (
+              <div key={s.tag} className={`impact-card c-${s.tone} reveal d${i + 1}`}>
+                <div className="ic-tag">{s.tag}</div>
+                <div className="ic-metric">{s.metric}</div>
+                <div className="ic-ml">{s.metricLabel}</div>
+                <p>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RECEIPTS */}
+      <section className="section-panel" id="receipts">
+        <div className="wrap">
+          <div className="reveal kicker">The receipts</div>
+          <h2 className="big reveal">And a system that actually ran to get there.</h2>
           <p className="lead reveal">Every number is a live count from the Mission Control database, snapshot {SNAPSHOT_DATE}. Not a slideware estimate.</p>
           <div className="stats">
             {receipts.map((r, i) => (
@@ -516,7 +540,7 @@ function App() {
       </section>
 
       {/* E7 */}
-      <section className="section-panel" id="e7">
+      <section className="section-dark" id="e7">
         <div className="wrap">
           <div className="reveal kicker">The E7 wedge</div>
           <h2 className="big reveal">The same engine already sells the platform story: E7.</h2>
@@ -616,7 +640,7 @@ function App() {
       <section className="section-dark" id="punch">
         <div className="wrap punch">
           <div className="reveal kicker">The punchline</div>
-          <h2 className="reveal">Stop hiring AI assistants.<br /><span className="g">Start running an operating system.</span></h2>
+          <h2 className="reveal">Stop prompting AI.<br /><span className="g">Start operating it.</span></h2>
           <div className="three">
             {[["Staff the account", "A persistent pod per strategic account, not a prompt.", "signal"],
               ["Gate the risk", "Read agents run free. Write agents ask. Nothing customer-facing auto-sends.", "action"],
