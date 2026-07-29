@@ -418,9 +418,17 @@ h2.big {
 .kit-left p { color: var(--tx2); font-size: 14.5px; margin-bottom: 22px; }
 .steps { display: flex; flex-direction: column; gap: 14px; }
 .kstep { display: flex; gap: 15px; align-items: flex-start; }
-.kstep .kn { width: 32px; height: 32px; flex: none; border-radius: 50%; border: 2px solid var(--signal); color: var(--signal); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 14px; }
+.kstep .kn { width: 32px; height: 32px; flex: none; border-radius: 50%; border: 2px solid var(--c, var(--signal)); color: var(--c, var(--signal)); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 14px; }
 .kstep b { color: var(--tx); }
 .kstep span { color: var(--mut); font-size: 13.5px; }
+.plumbing-note { margin-top: 22px; border-radius: 12px; background: var(--panel2); border: 1px solid var(--hair); border-left: 4px solid var(--action); padding: 16px 20px; font-size: 13px; color: var(--tx2); }
+.plumbing-note b { color: var(--action); }
+.dl-group { margin-bottom: 22px; }
+.dlg-head { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--c); margin-bottom: 12px; font-weight: 500; }
+.ops-teaser { border-radius: 12px; border: 1px dashed var(--hair2); background: linear-gradient(160deg, rgba(245,166,35,0.06), transparent); padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; }
+.ops-teaser .ot-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--action); border: 1px solid var(--action); border-radius: 6px; padding: 4px 8px; flex: none; margin-top: 2px; }
+.ops-teaser .ot-body { font-size: 12.5px; color: var(--tx2); }
+.ops-teaser .ot-body b { color: var(--tx); }
 .downloads { display: flex; flex-direction: column; gap: 12px; }
 .dl {
   display: flex; align-items: center; gap: 16px; border-radius: 12px; padding: 16px 18px;

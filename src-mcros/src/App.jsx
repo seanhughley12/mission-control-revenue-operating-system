@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   SNAPSHOT_DATE, receipts, patterns, loop, architecture, pods, podRoles,
-  funnel, rungs, gates, cadence, e7Specialists, e7Missions, learnLoop, asks, kitFiles,
+  funnel, rungs, gates, cadence, e7Specialists, e7Levers, learnLoop, adoptPath, kitFiles,
   impactHeadline, impactStories,
 } from "./data.js";
 
@@ -544,7 +544,7 @@ function App() {
         <div className="wrap">
           <div className="reveal kicker">The E7 wedge</div>
           <h2 className="big reveal">The same engine already sells the platform story: E7.</h2>
-          <p className="lead reveal">E7 is a control-and-governance layer for enterprise agentic AI: a CIO-level, cross-stack story. Mission Control already carries four E7 specialists, and the pods run dollar-quantified E7 missions. This is the bridge to the Cost Hub.</p>
+          <p className="lead reveal">E7 is a control-and-governance layer for enterprise agentic AI: a CIO-level, cross-stack story. The same engine that runs an account can run the E7 motion, turning bottom-up value in the business units into the top-down C-suite conversation. This is the bridge to the Cost Hub.</p>
           <div className="specs">
             {e7Specialists.map((s, i) => (
               <div key={s.name} className={`spec c-${s.tone} reveal d${i + 1}`}>
@@ -553,9 +553,9 @@ function App() {
             ))}
           </div>
           <div className="missions reveal">
-            <div className="ml">E7 MISSIONS ALREADY LOADED IN THE PODS</div>
+            <div className="ml">THE E7 MESSAGE: THE COST OF DOING NOTHING</div>
             <div className="mgrid">
-              {e7Missions.map((m) => (
+              {e7Levers.map((m) => (
                 <div key={m.name}><div className="mn">{m.name}</div><div className="mb">{m.body}</div></div>
               ))}
             </div>
@@ -590,35 +590,38 @@ function App() {
       <section className="section-panel" id="kit">
         <div className="wrap">
           <div className="reveal kicker k-signal">Translate this</div>
-          <h2 className="big reveal">You don't need 107 agents. You need one pod.</h2>
-          <p className="lead reveal">Mission Control is built to be adopted: pods are portable, roles are just skills, and the governance is generic. If you already run Microsoft Scout, download the kit and let Scout build your first pod for you.</p>
+          <h2 className="big reveal">You don't need the whole system. You need one skill.</h2>
+          <p className="lead reveal">Mission Control has two layers: an <b>operations layer</b> of skills that capture and compound context, and a <b>pod layer</b> of autonomous account teams on top. The pods lean on the plumbing. So don't start with a pod. Start with a single skill that works on day one.</p>
           <div className="kit-wrap">
             <div className="kit-left reveal d1">
-              <h3>MCROS Lite: your first pod, in Scout</h3>
-              <p>Built for Microsoft Scout users. Paste one master prompt and Scout creates the three role-skills, wires a draft-only daily automation, and stores your account context. You approve everything.</p>
+              <h3>The honest path to your first win</h3>
+              <p>Everything here runs in Microsoft Scout, draft-only. You grow into the system; you don't install it all at once.</p>
               <div className="steps">
-                {[["1", "Download the kit", "Grab the master prompt, three role skills, and the governance file below."],
-                  ["2", "Paste the master prompt into Scout", "Scout interviews you, then builds the skills and one daily automation, draft-only."],
-                  ["3", "Point it at one account", "Watcher reads signals, Chair proposes moves, Owner tracks closure to a Teams card."],
-                  ["4", "Run in draft for a week", "Correct it out loud. Graduate a rung once it's boringly reliable."]].map((s) => (
-                  <div key={s[0]} className="kstep">
-                    <div className="kn">{s[0]}</div>
-                    <div><b>{s[1]}</b><br /><span>{s[2]}</span></div>
+                {adoptPath.map((s) => (
+                  <div key={s.n} className={`kstep c-${s.tone}`}>
+                    <div className="kn">{s.n}</div>
+                    <div><b>{s.name}</b><br /><span>{s.body}</span></div>
                   </div>
                 ))}
               </div>
-              <div className="asks">
-                {asks.map((a) => (
-                  <div key={a.who} className={`ask c-${a.tone}`}>
-                    <div className="aw">{a.who}</div>
-                    <p>{a.body}</p>
-                  </div>
-                ))}
+              <div className="plumbing-note reveal">
+                <b>Straight talk:</b> a skill you invoke by hand reads live M365 and works immediately. A pod on a schedule gets better the more signal you have flowing, so it rewards a little plumbing. Run manual first; automate when you're ready.
               </div>
             </div>
             <div className="reveal d2">
-              <div className="downloads">
-                {kitFiles.map((k) => (
+              <div className="dl-group">
+                <div className="dlg-head c-signal">Start here: the only two files you need</div>
+                {kitFiles.filter((k) => k.group === "start").map((k) => (
+                  <button key={k.file} className={`dl c-${k.tone}`} onClick={() => download(k.file, k.title)}>
+                    <div className="ic">MD</div>
+                    <div className="dt"><b>{k.title}</b><span>{k.desc}</span></div>
+                    <div className="arrow">↓</div>
+                  </button>
+                ))}
+              </div>
+              <div className="dl-group">
+                <div className="dlg-head c-violet">For tinkerers: wire it by hand</div>
+                {kitFiles.filter((k) => k.group === "tinker").map((k) => (
                   <button key={k.file} className={`dl c-${k.tone}`} onClick={() => download(k.file, k.title)}>
                     <div className="ic">MD</div>
                     <div className="dt"><b>{k.title}</b><span>{k.desc}</span></div>
@@ -630,6 +633,10 @@ function App() {
                   <div className="dt"><b>Download the full kit</b><span>Everything above in one combined markdown file.</span></div>
                   <div className="arrow">↓</div>
                 </button>
+              </div>
+              <div className="ops-teaser">
+                <div className="ot-tag">Next drop</div>
+                <div className="ot-body"><b>Operations skills.</b> Forecast hygiene, transcript-to-narrative, and customer artifacts. The most valuable, most plug-and-play wins, and where most of the influenced revenue actually came from.</div>
               </div>
             </div>
           </div>
@@ -665,4 +672,5 @@ function App() {
 }
 
 export default App;
+
 

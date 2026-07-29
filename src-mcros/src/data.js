@@ -103,25 +103,25 @@ export const impactHeadline = { value: "$3M+", label: "influenced closed-won rev
 
 export const impactStories = [
   {
-    tag: "Total Quality Logistics",
+    tag: "Skills + operations",
     tone: "signal",
-    metric: "$2.5M",
-    metricLabel: "closed",
-    body: "A large share of the work that moved this deal ran through the pods: the prep, the follow-through, and the follow-ups that kept it alive between conversations.",
+    metric: "Most of it",
+    metricLabel: "where the influence came from",
+    body: "Transcript capture that turns calls into strategy, customer artifacts and value pages, forecast hygiene, and relentless follow-through. This layer did most of the influencing, including a large share of the work that moved the $2.5M TQL deal.",
   },
   {
-    tag: "Sirva · autonomous pod",
+    tag: "The autonomous pod",
     tone: "l3",
     metric: "Up, not down",
-    metricLabel: "the signal that matters",
-    body: "Autonomous outreach earned a reply and moved the conversation UP the chain, from a VP to the CISO, instead of getting pushed down. The pod manager monitors and reports on the pipeline goal on its own.",
+    metricLabel: "the newest proof point",
+    body: "Sirva is the emerging pod layer. Autonomous outreach earned a reply and moved the conversation UP the chain, from a VP to the CISO, instead of getting pushed down, while the pod monitors its own pipeline goal.",
   },
   {
-    tag: "The pattern",
+    tag: "The point",
     tone: "action",
     metric: "Influence",
     metricLabel: "not activity",
-    body: "The point was never hours saved. It is revenue moved: deals influenced, conversations escalated, and follow-through that no longer depends on me remembering.",
+    body: "Not hours saved. Revenue moved: deals influenced, narratives built, conversations escalated, follow-through that no longer depends on me remembering. By the whole system, not any one agent.",
   },
 ];
 
@@ -174,11 +174,10 @@ export const e7Specialists = [
   { name: "Pilot-to-Transformation", tone: "violet", body: "Owns where the account sits on the pilot to transformation curve and the next step." },
 ];
 
-export const e7Missions = [
-  { name: "Harley-Davidson", body: "$4.45M EA renewal + $2.52M E7 step-up" },
-  { name: "Autoliv", body: "FY27 E7 step-up: 10,200 seats, 50% IWs" },
-  { name: "Smiths", body: "$6.9M MACC to $360K FY27 E7" },
-  { name: "Sirva", body: "$1M+ qualified E7 pipeline, autonomously" },
+export const e7Levers = [
+  { name: "Cost & planning", body: "Model the cost of doing nothing: unplanned consumption, agent sprawl, and the price of waiting to get ahead of it." },
+  { name: "Acceleration", body: "Give risk-averse buyers a governed way to adopt faster than their competitors, not slower." },
+  { name: "Risk & control", body: "One control point for security, governance, and cost as agents, connectors, and custom builds multiply." },
 ];
 
 export const learnLoop = [
@@ -189,19 +188,20 @@ export const learnLoop = [
   { step: "Tune", body: "Scoring and drafting adjust for next time", tone: "signal" },
 ];
 
-export const asks = [
-  { who: "For sellers", tone: "action", body: "Pick one account. Stand up a 3-role pod in draft. Tell me what it got wrong." },
-  { who: "For managers", tone: "l3", body: "Give one rep air cover for 2 hours a week to build a pod. Debrief at the 1:1." },
-  { who: "For leaders", tone: "signal", body: "Let your top 5 run pods. No pilot, no committee. Permission, time, and a hard gate." },
+// The honest adoption path, tied to the story
+export const adoptPath = [
+  { n: "1", name: "Run one skill by hand", tone: "signal", body: "Install a role skill and invoke it on one account when you need it. It reads live M365, so it works on day one with no plumbing." },
+  { n: "2", name: "Wire it into a pod", tone: "action", body: "Turn the skills into a scheduled, draft-only automation. This is where the collectors and stored signal start to compound." },
+  { n: "3", name: "Add the operations skills", tone: "l3", body: "Forecast hygiene, transcript-to-narrative, customer artifacts. The highest-value plug-and-play wins. This is the next drop." },
 ];
 
 // Downloadable starter-kit files (served from /kit/)
 export const kitFiles = [
-  { file: "00-START-HERE.md", title: "Start Here", desc: "Prerequisites and the 10-minute Scout setup, two install paths.", tone: "signal" },
-  { file: "01-master-prompt.md", title: "Master Prompt", desc: "Paste into Scout; it builds the pod (skills + automation) for you.", tone: "action" },
-  { file: "02-account-watcher.md", title: "Account Watcher skill", desc: "Installable Scout skill: the pod's chief of staff.", tone: "action" },
-  { file: "03-opportunity-chair.md", title: "Opportunity Chair skill", desc: "Installable Scout skill: turns signals into next-best moves.", tone: "l3" },
-  { file: "04-action-owner.md", title: "Action Owner skill", desc: "Installable Scout skill: by-who / by-when accountability.", tone: "l3" },
-  { file: "05-governance.md", title: "Governance & Gates", desc: "Draft-only doctrine mapped to Scout's approval model.", tone: "violet" },
+  { file: "00-START-HERE.md", title: "Start Here", desc: "Prerequisites and the 10-minute Scout setup, two install paths.", tone: "signal", group: "start" },
+  { file: "01-master-prompt.md", title: "Master Prompt", desc: "Paste into Scout; it builds the pod (skills + automation) for you.", tone: "action", group: "start" },
+  { file: "02-account-watcher.md", title: "Account Watcher skill", desc: "Installable Scout skill: the pod's chief of staff.", tone: "action", group: "tinker" },
+  { file: "03-opportunity-chair.md", title: "Opportunity Chair skill", desc: "Installable Scout skill: turns signals into next-best moves.", tone: "l3", group: "tinker" },
+  { file: "04-action-owner.md", title: "Action Owner skill", desc: "Installable Scout skill: by-who / by-when accountability.", tone: "l3", group: "tinker" },
+  { file: "05-governance.md", title: "Governance & Gates", desc: "Draft-only doctrine mapped to Scout's approval model.", tone: "violet", group: "tinker" },
 ];
 
